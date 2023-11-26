@@ -59,7 +59,7 @@ def getrecord():
     jsonlist = []
     if len(records)>100:
         for i in range(100):
-            fast = {'uid':0,'usingtime':3600*24*1000,'wrongtime':0,'uploadtime':0}
+            fast = {'uid':0,'usingtime':'24:00:00:0000000','wrongtime':0,'uploadtime':0}
             for j in records:
                 jtime = int(j['usingtime'][0:2])*3600000 + int(j['usingtime'][3:5])*60000 + int(j['usingtime'][6:8])*1000 + int(j['usingtime'][9:12])
                 fasttime = int(fast['usingtime'][0:2])*3600000 + int(fast['usingtime'][3:5])*60000 + int(fast['usingtime'][6:8])*1000 + int(fast['usingtime'][9:12])
@@ -76,7 +76,7 @@ def getrecord():
             records.remove(fast)
     else:
         for i in range(len(records)):
-            fast = {'uid':0,'usingtime':3600*24*1000,'wrongtime':0,'uploadtime':0}
+            fast = {'uid':0,'usingtime':'24:00:00:0000000','wrongtime':0,'uploadtime':0}
             for j in records:
                 jtime = int(j['usingtime'][0:2])*3600000 + int(j['usingtime'][3:5])*60000 + int(j['usingtime'][6:8])*1000 + int(j['usingtime'][9:12])
                 fasttime = int(fast['usingtime'][0:2])*3600000 + int(fast['usingtime'][3:5])*60000 + int(fast['usingtime'][6:8])*1000 + int(fast['usingtime'][9:12])
