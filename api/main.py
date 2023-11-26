@@ -64,7 +64,7 @@ def getrecord():
     for i in data:
         records.append(Record(i['uid'],i['usingtime'],i['wrongtime'],i['uploadtime']))
     jsonlist = []
-    if len(record)>100:
+    if len(records)>100:
         for i in range(100):
             fast = Record(null,3600*24,0,0)
             for j in records:
