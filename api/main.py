@@ -68,8 +68,8 @@ def getrecord():
         for i in range(100):
             fast = Record(0,3600000*24,0,0)
             for j in records:
-                jtime = int(j[usingtime][0:2])*3600000 + int(j[usingtime][3:5])*60000 + int(j[usingtime][6:8])*1000 + int(j[usingtime][9:12])
-                fasttime = int(fast[usingtime][0:2])*3600000 + int(fast[usingtime][3:5])*60000 + int(fast[usingtime][6:8])*1000 + int(fast[usingtime][9:12])
+                jtime = int(j['usingtime'][0:2])*3600000 + int(j['usingtime'][3:5])*60000 + int(j['usingtime'][6:8])*1000 + int(j['usingtime'][9:12])
+                fasttime = int(fast['usingtime'][0:2])*3600000 + int(fast['usingtime'][3:5])*60000 + int(fast['usingtime'][6:8])*1000 + int(fast['usingtime'][9:12])
                 if jtime<fasttime:
                     fast = j
                 elif jtime == fasttime:
@@ -85,14 +85,14 @@ def getrecord():
         for i in range(len(records)):
             fast = Record(0,3600*24,0,0)
             for j in records:
-                jtime = int(j[usingtime][0:2])*3600000 + int(j[usingtime][3:5])*60000 + int(j[usingtime][6:8])*1000 + int(j[usingtime][9:12])
-                fasttime = int(fast[usingtime][0:2])*3600000 + int(fast[usingtime][3:5])*60000 + int(fast[usingtime][6:8])*1000 + int(fast[usingtime][9:12])
+                jtime = int(j['usingtime'][0:2])*3600000 + int(j['usingtime'][3:5])*60000 + int(j['usingtime'][6:8])*1000 + int(j['usingtime'][9:12])
+                fasttime = int(fast['usingtime'][0:2])*3600000 + int(fast['usingtime'][3:5])*60000 + int(fast['usingtime'][6:8])*1000 + int(fast['usingtime'][9:12])
                 if jtime<fasttime:
                     fast = j
                 elif jtime == fasttime:
-                    if int(j[wrongtime])<int(fast[wrongtime]):
+                    if int(j['wrongtime'])<int(fast['wrongtime']):
                         fast = j
-                    elif int(j[wrongtime])==int(fast[wrongtime]):
+                    elif int(j['wrongtime'])==int(fast['wrongtime']):
                         pass #先不做
             #add to json
             jsonlist.append(fast)
