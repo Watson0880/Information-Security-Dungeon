@@ -40,6 +40,34 @@
                 </tr>
             </tbody>
         </table>
+        <script>
+            var xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://information-security-dungeon.vercel.app/getrecord", true);
+                xhr.send(null);
+                xhr.onload = function(){
+                    if(xhr.status == 200) {
+                        recordList = JSON.parse(xhr.responseText);
+                        for(var i=0; i<recordList.length; i++) {
+                            newTrNode = document.createElement('tr');
+                            uidTdNode = document.createElement('td');
+                            uidTdNode.appendChild(document.createTextNode(recordList[i]['uid']));
+                            usingTdNode = document.createElement('td');
+                            usingTdNode.appendChild(document.createTextNode(recordList[i]['usingtime']));
+                            wrongTdNode = document.createElement('td');
+                            wrongTdNode.appendChild(document.createTextNode(recordList[i]['wrongtime']));
+                            uploadTdNode = document.createElement('td');
+                            uploadTdNode.appendChild(document.createTextNode(recordList[i]['uploadtime']));
+    
+                            newTrNode.appendChild(uidTdNode);
+                            newTrNode.appendChild(usingTdNode);
+                            newTrNode.appendChild(wrongTdNode);
+                            newTrNode.appendChild(uploadTdNode);
+    
+                            document.getElementsByTagName('tbody')[0].appendChild(newTrNode);
+                        }
+                    }
+                }
+        </script>
     </div>
 </body>
 </html>

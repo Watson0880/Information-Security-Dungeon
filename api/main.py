@@ -6,7 +6,12 @@ import os
 import json
 from pymongo.mongo_client import MongoClient
 
-
+class Record:
+    def __init__(self,uid,usingtime,wrongtime,uploadtime):
+        self.uid = uid
+        self.usingtime = usingtime
+        self.wrongtime = wrongtime
+        self.uploadtime = uploadtime
 
 app = Flask(__name__)
 CORS(app)
@@ -43,3 +48,56 @@ def uploadrecord():
         print(e)
         return render_template('/requeststatus.html',message="Fail")
     '''
+@app.route('/getrecord',methods=["GET"])
+def getrecord():
+    uri = os.environ.get('URL')
+    db_name = "rank"
+    collection_name = "record"
+    client = MongoClient(uri)
+    database = client[db_name]
+    collection = database[collection_name]
+    # Send a ping to confirm a successful connection
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+    data = collection.find()
+    records = []
+    for i in data:
+        record.append(Record(i['uid'],i['usingtime'],i['wrongtime'],i['uploadtime']))
+    jsonlist = []
+    if len(record)>100:
+        for i in range(100):
+            fast = Record(null,3600*24,0,0)
+            for j in records:
+                jtime = int(j[usingtime][0:2])*3600000 + int(j[usingtime][3:5])*60000 + int(j[usingtime][6:8])*1000 + int(j[usingtime][9:12])
+                fasttime = int(fast[usingtime][0:2])*3600000 + int(fast[usingtime][3:5])*60000 + int(fast[usingtime][6:8])*1000 + int(fast[usingtime][9:12])
+                if jtime<fasttime:
+                    fast = j
+                elif jtime == fasttime:
+                    if int(j[wrongtime])<int(fast[wrongtime]):
+                        fast = j
+                    elif int(j[wrongtime])==int(fast[wrongtime]):
+                        pass #先不做
+            #add to json
+            jsonlist.append(fast)
+            #remove from records
+            records.remove(fast)
+    else:
+        for i in range(len(records)):
+            fast = Record(null,3600*24,0,0)
+            for j in records:
+                jtime = int(j[usingtime][0:2])*3600000 + int(j[usingtime][3:5])*60000 + int(j[usingtime][6:8])*1000 + int(j[usingtime][9:12])
+                fasttime = int(fast[usingtime][0:2])*3600000 + int(fast[usingtime][3:5])*60000 + int(fast[usingtime][6:8])*1000 + int(fast[usingtime][9:12])
+                if jtime<fasttime:
+                    fast = j
+                elif jtime == fasttime:
+                    if int(j[wrongtime])<int(fast[wrongtime]):
+                        fast = j
+                    elif int(j[wrongtime])==int(fast[wrongtime]):
+                        pass #先不做
+            #add to json
+            jsonlist.append(fast)
+            #remove from records
+            records.remove(fast)
+    sortjson = json.dumps(jsonlist)
+    print("find data")
+    return Response(sortjson, mimetype='text/json')
