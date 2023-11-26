@@ -66,7 +66,7 @@ def getrecord():
     jsonlist = []
     if len(records)>100:
         for i in range(100):
-            fast = Record(null,3600*24,0,0)
+            fast = Record(0,3600000*24,0,0)
             for j in records:
                 jtime = int(j[usingtime][0:2])*3600000 + int(j[usingtime][3:5])*60000 + int(j[usingtime][6:8])*1000 + int(j[usingtime][9:12])
                 fasttime = int(fast[usingtime][0:2])*3600000 + int(fast[usingtime][3:5])*60000 + int(fast[usingtime][6:8])*1000 + int(fast[usingtime][9:12])
@@ -83,7 +83,7 @@ def getrecord():
             records.remove(fast)
     else:
         for i in range(len(records)):
-            fast = Record(null,3600*24,0,0)
+            fast = Record(0,3600*24,0,0)
             for j in records:
                 jtime = int(j[usingtime][0:2])*3600000 + int(j[usingtime][3:5])*60000 + int(j[usingtime][6:8])*1000 + int(j[usingtime][9:12])
                 fasttime = int(fast[usingtime][0:2])*3600000 + int(fast[usingtime][3:5])*60000 + int(fast[usingtime][6:8])*1000 + int(fast[usingtime][9:12])
