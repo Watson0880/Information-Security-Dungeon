@@ -49,15 +49,32 @@
                         recordList = JSON.parse(xhr.responseText);
                         for(var i=0; i<recordList.length; i++) {
                             newTrNode = document.createElement('tr');
+
                             uidTdNode = document.createElement('td');
-                            uidTdNode.appendChild(document.createTextNode(recordList[i]['uid']));
+                            uidDivNode = document.createElement('div');
+                            uidDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                            uidTdNode.appendChild(uidDivNode);
+                            uidDivNode.appendChild(document.createTextNode(recordList[i]['uid']));
+
                             usingTdNode = document.createElement('td');
+                            usingDivNode = document.createElement('div');
+                            usingDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                            usingTdNode.appendChild(usingDivNode);
                             usingTdNode.appendChild(document.createTextNode(recordList[i]['usingtime']));
+
+
                             wrongTdNode = document.createElement('td');
+                            wrongDivNode = document.createElement('div');
+                            wrongDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                            wrongTdNode.appendChild(wrongDivNode);
                             wrongTdNode.appendChild(document.createTextNode(recordList[i]['wrongtime']));
+
                             uploadTdNode = document.createElement('td');
+                            uploadDivNode = document.createElement('div');
+                            uploadDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                            uploadTdNode.appendChild(uploadDivNode);
                             uploadTdNode.appendChild(document.createTextNode(recordList[i]['uploadtime']));
-    
+                            
                             newTrNode.appendChild(uidTdNode);
                             newTrNode.appendChild(usingTdNode);
                             newTrNode.appendChild(wrongTdNode);
