@@ -62,7 +62,7 @@ def getrecord():
     data = collection.find()
     records = []
     for i in data:
-        record.append(Record(i['uid'],i['usingtime'],i['wrongtime'],i['uploadtime']))
+        records.append(Record(i['uid'],i['usingtime'],i['wrongtime'],i['uploadtime']))
     jsonlist = []
     if len(record)>100:
         for i in range(100):
