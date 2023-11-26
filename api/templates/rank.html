@@ -68,20 +68,20 @@
                             usingDivNode = document.createElement('div');
                             usingDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
                             usingTdNode.appendChild(usingDivNode);
-                            usingTdNode.appendChild(document.createTextNode(recordList[i]['usingtime']));
+                            usingDivNode.appendChild(document.createTextNode(recordList[i]['usingtime']));
 
 
                             wrongTdNode = document.createElement('td');
                             wrongDivNode = document.createElement('div');
                             wrongDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
                             wrongTdNode.appendChild(wrongDivNode);
-                            wrongTdNode.appendChild(document.createTextNode(recordList[i]['wrongtime']));
+                            wrongDivNode.appendChild(document.createTextNode(recordList[i]['wrongtime']));
 
                             uploadTdNode = document.createElement('td');
                             uploadDivNode = document.createElement('div');
                             uploadDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
                             uploadTdNode.appendChild(uploadDivNode);
-                            uploadTdNode.appendChild(document.createTextNode(recordList[i]['uploadtime']));
+                            uploadDivNode.appendChild(document.createTextNode(recordList[i]['uploadtime']));
                             
                             newTrNode.appendChild(rankTdNode);
                             newTrNode.appendChild(uidTdNode);
