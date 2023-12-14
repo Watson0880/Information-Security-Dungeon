@@ -10,13 +10,15 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
+@app.route('/MainPage')
+def getMainPage():
+    return render_template('/MainPage.html')
+
 @app.route('/rank')
 def getrank():
     return render_template('/rank.html')
 
-@app.route('/MainPage')
-def getMainPage():
-    return render_template('/MainPage.html')
+
 
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
