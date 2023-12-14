@@ -115,6 +115,25 @@
             font-weight: 600;
             letter-spacing: .25px;
         }
+        .bg-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .App-mid {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            image-rendering: pixelated;
+        }
     </style>
 </head>
     
@@ -126,17 +145,20 @@
             <div class="APP">
                 <div class="Content">
                     <div class="Header">
+                        <div class="bg-container">
+                            <img class="App-mid" src="/static/Midforest.png">
+                        </div>
+                        <header class="App-header">
+                            <a class="DownloadButton" href="https://drive.google.com/drive/folders/1QbJT9lW9PKX_lGdUHmNVVfJphYe0B1Mu">
+                                <div class="DownloadText">下載連結</div>
+                            </a>
+                        </header>
                         <div class="TopBanner">
                             <div class="LeftGroup">
                                 <a class="LinkButton" href="/">HOME</a>
                             </div>
                             <a class="LinkButton" href="/rank">排行榜</a>
                         </div >
-                        <div class="App-header">
-                            <a class="DownloadButton" href="https://drive.google.com/drive/folders/1QbJT9lW9PKX_lGdUHmNVVfJphYe0B1Mu">
-                                <div class="DownloadText">下載連結</div>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
