@@ -14,6 +14,10 @@ CORS(app)
 def getrank():
     return render_template('/rank.html')
 
+@app.route('/MainPage')
+def getrank():
+    return render_template('/MainPage.html')
+
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
     data = request.get_data()
