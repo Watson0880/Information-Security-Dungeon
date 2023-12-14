@@ -134,6 +134,15 @@
             transform: translateX(-50%);
             image-rendering: pixelated;
         }
+        .App-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 120%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: pixelated;
+        }
     </style>
 </head>
     
@@ -146,6 +155,7 @@
                 <div class="Content">
                     <div class="Header">
                         <div class="bg-container">
+                            <img class="App-bg" src="/static/GamePicture.png">
                             <img class="App-mid" src="/static/Midforest.png">
                         </div>
                         <header class="App-header">
