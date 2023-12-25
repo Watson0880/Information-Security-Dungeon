@@ -3,8 +3,297 @@
 <head>
     <meta charset="utf-8" />
     <title>ISD Rank</title>
+    <style>
+        .AppContainer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .LeftGradient{
+            height: 100%;
+            width: calc(50% - 700px);
+            position: fixed;
+            background: linear-gradient(270deg,#000,transparent);
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+        .RightGradient{
+            height: 100%;
+            width: calc(50% - 700px);
+            position: fixed;
+            background: linear-gradient(90deg,#000,transparent);
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .APP{
+            text-align: center;
+            overflow-y: scroll;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .Content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            margin: 0 0 0 calc(50% - 693px);
+            max-width: 1400px;
+            height: 100%;
+        }
+        .Header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding-top: 56.33333%;
+            box-sizing: border-box;
+        }
+        .TopBanner {
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background: black;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #fff;
+            box-shadow: 0 0 9px rgba(0,0,0,.39215686274509803);
+            padding: 0 0 0 0;
+            height: 81px;
+            flex-direction: row;
+        }
+        .LeftGroup{
+            display: flex;
+        }
+        .LinkButton {
+            height: 100%;
+            font-family: Oxygen,sans-serif;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            letter-spacing: .75px;
+            height: 81px;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            color: #f0f8ff;
+            font-size: large;
+        }
+        .App-header {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(10px + 2vmin);
+            color: #fff;
+            z-index: 2;
+        }
+        .DownloadButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1c84ca;
+            border-radius: 12px;
+            border: 2px solid #8d9091;
+            width: 60%;
+            max-width: 320px;
+            box-sizing: border-box;
+            padding: 10px 20px;
+            font-size: 22px;
+            margin: 0 auto 24px;
+            height: 81px;
+            text-transform: uppercase;
+            -webkit-animation: ZoomIntro .5s 1.25s both;
+            animation: ZoomIntro .5s 1.25s both;
+        }
+        .DownloadText {
+            font-weight: 600;
+            letter-spacing: .25px;
+        }
+        .bg-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .App-mid {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            image-rendering: pixelated;
+        }
+        .App-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: pixelated;
+        }
+        .Pixel-Logo {
+            -webkit-animation: ZoomIntro 1s;
+            animation: ZoomIntro 1s;
+            max-width: 120%;
+            max-height: 50%;
+            margin-left: 2.5%;
+            image-rendering: pixelated;
+        }
+        .App-header2 {
+            position: absolute;
+            top: 81px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: calc(10px + 1.5vmin);
+            color: black;
+            background-color: white;
+        }
+    </style>
 </head>
 
+<body style="margin: 0px;">
+    <div style="display: block;">
+        <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
+            <div class="LeftGradient"></div>
+            <div class="RightGradient"></div>
+            <div class="APP">
+                <div class="Content">
+                    <div class="Header">
+                        <!--
+                        <div class="bg-container">                           
+                            <img class="App-bg" src="static/GamePicture1.png">
+                            
+                            
+                            <img class="App-mid" src="static/Midforest.png">
+                            
+                        </div>
+                        -->
+                        <div class="App-header2">
+                            <div style="text-align: center">
+                                <span style="font-size: 50px; font-family: '標楷體'; ">勇闖資安地下城</span>
+                            </div>
+                            <div>
+                                <table style="margin: auto">
+                                    <thead>
+                                        <tr>
+                                            <th>排名</th>
+                                            <th>玩家名稱</th>
+                                            <th>通關時間</th>
+                                            <th>錯誤次數</th>
+                                            <th>達成時間</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--
+                                        <tr>
+                                            <td>
+                                                <div style="text-align: center; padding: 0px 20px 0px 20px;">1</div>
+                                            </td>
+                                            <td>
+                                                <div style="text-align: center; padding: 0px 20px 0px 20px;">watson0880</div>
+                                            </td>
+                                            <td>
+                                                <div style="text-align: center; padding: 0px 20px 0px 20px;">20:12:54</div>
+                                            </td>
+                                            <td>
+                                                <div style="text-align: center; padding: 0px 20px 0px 20px;">3</div>
+                                            </td>
+                                            <td>
+                                                <div style="text-align: center; padding: 0px 20px 0px 20px;">2023-10-18 12:35:16</div>
+                                            </td>
+                                        </tr>
+                                        -->
+                                    </tbody>
+                                </table>
+                                <script>
+                                    var xhr = new XMLHttpRequest();
+                                        xhr.open("GET", "https://information-security-dungeon.vercel.app/getrecord", true);
+                                        xhr.send(null);
+                                        xhr.onload = function(){
+                                            if(xhr.status == 200) {
+                                                recordList = JSON.parse(xhr.responseText);
+                                                for(var i=0; i<recordList.length; i++) {
+                                                    newTrNode = document.createElement('tr');
+                        
+                                                    rankTdNode = document.createElement('td');
+                                                    rankDivNode = document.createElement('div');
+                                                    rankDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                                                    rankTdNode.appendChild(rankDivNode);
+                                                    rankDivNode.appendChild(document.createTextNode(i+1));
+                        
+                                                    uidTdNode = document.createElement('td');
+                                                    uidDivNode = document.createElement('div');
+                                                    uidDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                                                    uidTdNode.appendChild(uidDivNode);
+                                                    uidDivNode.appendChild(document.createTextNode(recordList[i]['uid']));
+                        
+                                                    usingTdNode = document.createElement('td');
+                                                    usingDivNode = document.createElement('div');
+                                                    usingDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                                                    usingTdNode.appendChild(usingDivNode);
+                                                    usingDivNode.appendChild(document.createTextNode(recordList[i]['usingtime']));
+                        
+                        
+                                                    wrongTdNode = document.createElement('td');
+                                                    wrongDivNode = document.createElement('div');
+                                                    wrongDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                                                    wrongTdNode.appendChild(wrongDivNode);
+                                                    wrongDivNode.appendChild(document.createTextNode(recordList[i]['wrongtime']));
+                        
+                                                    uploadTdNode = document.createElement('td');
+                                                    uploadDivNode = document.createElement('div');
+                                                    uploadDivNode.style = "text-align: center; padding: 0px 20px 0px 20px;";
+                                                    uploadTdNode.appendChild(uploadDivNode);
+                                                    uploadDivNode.appendChild(document.createTextNode(recordList[i]['uploadtime']));
+                                                    
+                                                    newTrNode.appendChild(rankTdNode);
+                                                    newTrNode.appendChild(uidTdNode);
+                                                    newTrNode.appendChild(usingTdNode);
+                                                    newTrNode.appendChild(wrongTdNode);
+                                                    newTrNode.appendChild(uploadTdNode);
+                            
+                                                    document.getElementsByTagName('tbody')[0].appendChild(newTrNode);
+                                                }
+                                            }
+                                        }
+                                </script>
+                            </div>
+                        </div>
+                        <div class="TopBanner">                           
+                            <a class="LinkButton" href="/">主畫面</a>
+                            <a class="LinkButton" href="/rank">排行榜</a>
+                        </div >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
+
+<!--
 <body>
     <div style="text-align: center">
         <span style="font-size: 50px; font-family: '標楷體'; ">勇闖資安地下城</span>
@@ -21,7 +310,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!--
+                
                 <tr>
                     <td>
                         <div style="text-align: center; padding: 0px 20px 0px 20px;">1</div>
@@ -39,7 +328,7 @@
                         <div style="text-align: center; padding: 0px 20px 0px 20px;">2023-10-18 12:35:16</div>
                     </td>
                 </tr>
-                -->
+                
             </tbody>
         </table>
         <script>
@@ -97,3 +386,4 @@
     </div>
 </body>
 </html>
+-->

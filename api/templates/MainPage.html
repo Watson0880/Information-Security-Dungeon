@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <title>ISD MainPage</title>
     <style>
+        div {
+            display: block;
+        }
         .AppContainer {
             position: absolute;
             width: 100%;
@@ -52,14 +55,14 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            background: rgba(0,0,0,.4980392156862745);
+            background: black;
             z-index: 2;
             position: absolute;
             left: 0;
             top: 0;
             color: #fff;
             box-shadow: 0 0 9px rgba(0,0,0,.39215686274509803);
-            padding: 0 24px 0 0;
+            padding: 0 0px 0 0;
             height: 81px;
             flex-direction: row;
         }
@@ -158,34 +161,30 @@
     </style>
 </head>
     
-<body>
-    <div style="display: block;">
-        <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
-            <div class="LeftGradient"></div>
-            <div class="RightGradient"></div>
-            <div class="APP">
-                <div class="Content">
-                    <div class="Header">
-                        <div class="bg-container">
-                            <img class="App-bg" src="static/GamePicture1.png">
-                            <img class="App-mid" src="static/Midforest.png">
-                        </div>
-                        <header class="App-header">
-                            <img src="static/ICON.png" class="Pixel-Logo" alt="logo">
-                            <a class="DownloadButton" href="https://drive.google.com/drive/folders/1QbJT9lW9PKX_lGdUHmNVVfJphYe0B1Mu">
-                                <div class="DownloadText">下載連結</div>
-                            </a>
-                        </header>
-                        <div class="TopBanner">
-                            <div class="LeftGroup">
-                                <a class="LinkButton" href="/">主畫面</a>
-                            </div>
-                            <a class="LinkButton" href="/rank">排行榜</a>
-                        </div >
+<body style="margin: 0px;">
+    <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
+        <div class="LeftGradient"></div>
+        <div class="RightGradient"></div>
+        <div class="APP">
+            <div class="Content">
+                <div class="Header">
+                    <div class="bg-container">
+                        <img class="App-bg" src="static/GamePicture1.png">
+                        <img class="App-mid" src="static/Midforest.png">
                     </div>
+                    <header class="App-header">
+                        <img src="static/ICON.png" class="Pixel-Logo" alt="logo">
+                        <a class="DownloadButton" href="https://drive.google.com/drive/folders/1QbJT9lW9PKX_lGdUHmNVVfJphYe0B1Mu">
+                            <div class="DownloadText">下載連結</div>
+                        </a>
+                    </header>
+                    <div class="TopBanner">
+                        <a class="LinkButton" href="/">主畫面</a>
+                        <a class="LinkButton" href="/rank">排行榜</a>
+                    </div >
                 </div>
             </div>
         </div>
-    </div>  
+    </div> 
 </body>
 </html>
