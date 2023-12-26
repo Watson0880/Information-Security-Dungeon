@@ -20,7 +20,7 @@ def getrank():
 
 @app.route('/introduce')
 def getintroduce():
-    return render_template('/introduce.html')
+    return render_template('/Introduce.html')
 
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
