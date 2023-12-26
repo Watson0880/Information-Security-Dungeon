@@ -18,7 +18,9 @@ def getMainPage():
 def getrank():
     return render_template('/rank.html')
 
-
+@app.route('/introduce')
+def getintroduce():
+    return render_template('/introduce.html')
 
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():

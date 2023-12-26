@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ISD Rank</title>
+    <style>
+        .AppContainer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .LeftGradient{
+            height: 100%;
+            width: calc(50% - 700px);
+            position: fixed;
+            background: linear-gradient(270deg,#000,transparent);
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+        .RightGradient{
+            height: 100%;
+            width: calc(50% - 700px);
+            position: fixed;
+            background: linear-gradient(90deg,#000,transparent);
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .APP{
+            text-align: center;
+            overflow-y: scroll;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .Content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            margin: 0 0 0 calc(50% - 693px);
+            max-width: 1400px;
+            height: 100%;
+        }
+        .Header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding-top: 56.33333%;
+            box-sizing: border-box;
+        }
+        .TopBanner {
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background: black;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #fff;
+            box-shadow: 0 0 9px rgba(0,0,0,.39215686274509803);
+            padding: 0 0 0 0;
+            height: 81px;
+            flex-direction: row;
+        }
+        .LeftGroup{
+            display: flex;
+        }
+        .LinkButton {
+            height: 100%;
+            font-family: Oxygen,sans-serif;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            letter-spacing: .75px;
+            height: 81px;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            color: #f0f8ff;
+            font-size: large;
+        }
+        .App-header {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(10px + 2vmin);
+            color: #fff;
+            z-index: 2;
+        }
+        .DownloadButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1c84ca;
+            border-radius: 12px;
+            border: 2px solid #8d9091;
+            width: 60%;
+            max-width: 320px;
+            box-sizing: border-box;
+            padding: 10px 20px;
+            font-size: 22px;
+            margin: 0 auto 24px;
+            height: 81px;
+            text-transform: uppercase;
+            -webkit-animation: ZoomIntro .5s 1.25s both;
+            animation: ZoomIntro .5s 1.25s both;
+        }
+        .DownloadText {
+            font-weight: 600;
+            letter-spacing: .25px;
+        }
+        .bg-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .App-mid {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            image-rendering: pixelated;
+        }
+        .App-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: pixelated;
+        }
+        .Pixel-Logo {
+            -webkit-animation: ZoomIntro 1s;
+            animation: ZoomIntro 1s;
+            max-width: 120%;
+            max-height: 50%;
+            margin-left: 2.5%;
+            image-rendering: pixelated;
+        }
+        .App-header2 {
+            position: absolute;
+            top: 81px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: calc(10px + 1.5vmin);
+            color: black;
+            background-color: #ededed;
+        }
+        h1 {
+            margin: 1.5em 0;
+            font-weight: normal;
+            text-align: center;
+        }
+        h2 {
+            margin: 1.2em 0;
+        }
+        h1, h2 {
+            font-family: 'Bree Serif', serif;
+            font-weight: normal;
+        }
+        .content {
+            max-width: 600px;
+            margin: 1em auto;
+        }
+    </style>
+</head>
+
+<body style="margin: 0px;">
+    <div style="display: block;">
+        <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
+            <div class="LeftGradient"></div>
+            <div class="RightGradient"></div>
+            <div class="APP">
+                <div class="Content">
+                    <div class="Header">                        
+                        <div class="App-header2">
+                            <h1 class="content">遊戲玩法</h1>
+                            <h1 class="content">遊戲技能設定</h1>
+                            <p class="content">
+                                技能分成三個階級<br>
+                                階級一消耗能量為5，升級所需技能點為5<br>
+                                階級二消耗能量為25，升級所需技能點為25<br>
+                                階級一消耗能量為125，升級所需技能點為50<br>
+                                每個技能最高都可以升到7級
+                            </p>
+                            <h2>階級一技能</h2>
+                            <h3>劍氣</h3>
+                            <p class="content">
+                                <img src="static/02.png"><br>
+                                射出一道劍氣，以31.25格/秒飛行1秒<br>
+                                傷害為基礎攻擊的3 / 3.1 / 3.2 / 3.3 / 3.4 / 3.5 / 3.6倍<br>
+                                擊退力度為4，冷卻時間1.5秒
+                            </p>
+                            <h3>迴旋斬</h3>
+                            <p class="content">
+                                <img src="static/01.png"><br>
+                                以自身為中心旋轉刀芒一圈，半徑為4格<br>
+                                傷害為基礎攻擊的2.2 / 2.4 / 2.6 / 2.8 / 3.0 / 3.2 / 3.4倍<br>
+                                擊退力度為5 / 5.3 / 5.6 / 6.0 / 6.3 / 6.6 / 7.0，冷卻時間2秒
+                            </p>
+                            <h3>騎士衝鋒</h3>
+                            <p class="content">
+                                <img src="static/03.png"><br>
+                                以自身為起點，突進最近的敵人，衝鋒時不受任意傷害<br>
+                                衝刺力度為8，前進大約6~7格<br>
+                                傷害為基礎攻擊4.5 / 4.7 / 4.9 / 5.1 / 5.3 / 5.5 / 5.7倍<br>
+                                擊退力度為10，冷卻時間3秒
+                            </p>
+                            <h3>生命之盾</h3>
+                            <p class="content">
+                                <img src="static/04.png"><br>
+                                產生一個護盾，可以吸收50%敵方傷害<br>
+                                持續時間為6 / 7 / 8 / 9 / 10 / 11 / 12秒<br>
+                                冷卻時間20秒
+                            </p>
+                            <h3>血脈狂怒</h3>
+                            <p class="content">
+                                <img src="static/05.png"><br>
+                                血量回復當前最大血量的7 / 9 / 11 / 13 / 15 / 17 / 19 %<br>
+                                提升基礎攻擊為1.7 / 1.9 / 2.1 / 2.3 / 2.5 / 2.7 / 2.9倍<br>
+                                持續時間10秒，武器會散發黃色微光，冷卻時間15秒
+                            </p>
+                            <h2>階級二技能</h2>
+                            <h3>迴旋刃</h3>
+                            <p class="content">
+                                <img src="static/07.png"><br>
+                                向最近敵人發射旋轉刀刃，經0.5秒後反回玩家位置<br>
+                                以31.25格/秒飛行1秒<br>
+                                傷害為基礎攻擊3.6 / 4.0 / 4.4 / 4.8 / 5.2 / 5.6 / 6倍<br>
+                                擊退力度為4，冷卻時間6秒
+                            </p>
+                            <h3>氣衝波</h3>
+                            <p class="content">
+                                <img src="static/10.png"><br>
+                                以自身前方一片扇形區域發出持續變大的衝擊波<br>
+                                向前飛行大約6.25格<br>
+                                傷害為基礎攻擊5 / 5.5 / 6 / 6.5 / 7 / 7.5 / 8倍<br>
+                                擊退力度為4，冷卻時間5秒
+                            </p>
+                            <h3>絕影</h3>
+                            <p class="content">
+                                <img src="static/09.png"><br>
+                                向玩家最近的敵人發出20連斬擊，每0.15秒攻擊一次<br>
+                                向前飛行大約5.625格<br>
+                                傷害為基礎攻擊0.4 / 0.5 / 0.6 / 0.7 / 0.8 / 0.9 / 1.0倍<br>
+                                擊退力度為0.5，冷卻時間8秒
+                            </p>
+                            <h2>階級三技能</h2>
+                            <h3>次元斬</h3>
+                            <p class="content">
+                                <img src="static/06.png"><br>
+                                以自身為中心向前快速發出超大斬擊<br>
+                                攻擊距離為10格<br>
+                                傷害為基礎攻擊25 / 27 / 29 / 31 / 33 / 35 / 37倍<br>
+                                擊退力度為4，冷卻時間150秒
+                            </p>
+                            <h3>拔山倒樹</h3>
+                            <p class="content">
+                                <img src="static/11.png"><br>
+                                以自身為中心向周圍發出震盪波，總共有3波<br>
+                                第一波以9.375格/秒發射2秒<br>
+                                傷害為基礎攻擊4 / 4.5 / 5 / 5.5 / 6 / 6.5 / 7倍<br>
+                                第二波以15.625格/秒發射2秒<br>
+                                傷害為基礎攻擊6 / 6.5 / 7 / 7.5 / 8 / 8.5 / 9倍<br>
+                                第三波以21.875格/秒發射2秒<br>
+                                傷害為基礎攻擊8 / 8.5 / 9 / 9.5 / 10 / 10.5 / 11倍<br>
+                                擊退力度為2 / 4，冷卻時間100秒
+                            </p>
+                        </div>
+                        <div class="TopBanner">                           
+                            <a class="LinkButton" href="/">主畫面</a>
+                            <a class="LinkButton" href="/introduce">遊戲介紹</a>
+                            <a class="LinkButton" href="/rank">排行榜</a>
+                        </div >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
+
