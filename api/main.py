@@ -38,7 +38,7 @@ def getlogin():
             if users is not None:
                 if users[0]['password'] == request.form['password']:
                     session['username'] = request.form['username']
-                    return redirect(url_for('MainPage'))
+                    return redirect(url_for('getMainPage'))
                 else:
                     flash('密碼錯誤', 'error')
             else:
@@ -63,7 +63,7 @@ def getregister():
                 if request.form['confirmpassword'] == request.form['password']:
                     collection.insert_one({'username':request.form['username'],'password':request.form['password']}) #加入資料庫
                     session['username'] = request.form['username']
-                    return redirect(url_for('MainPage'))
+                    return redirect(url_for('getMainPage'))
                 else:
                     flash('確認密碼與密碼不同', 'error')
             else:
@@ -73,7 +73,7 @@ def getregister():
 @app.route('/User',methods=['GET'])
 def getuser():
     if session.get('username') is None:
-        redirect(url_for('login'))
+        redirect(url_for('getlogin'))
     return render_template('/User.html')
 
 @app.route('/uploadrecord',methods=["POST"])
