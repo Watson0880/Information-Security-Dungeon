@@ -24,7 +24,7 @@ def getintroduce():
 
 @app.route('/login')
 def getlogin():
-    return render_template('/Iogin.html')
+    return render_template('/Login.html')
 
 @app.route('/register')
 def getregister():
