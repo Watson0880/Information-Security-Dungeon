@@ -203,6 +203,9 @@
                     <div class="Header">                        
                         <div class="App-header2">
                             <h1>註冊</h1>
+                            {% for mesg in get_flashed_messages() %}
+                            <h1>{{ mesg }}</h1>
+                            {% endfor %}
                             <form action = "{{ request.path }}" method = "post">
                                 <P>
                                     <label>帳號</label><br>
