@@ -1,12 +1,11 @@
-from flask import Flask, render_template
-from flask import request
-from flask import Response
+from flask import Flask, request, flash, url_for, redirect, render_template, make_response, session, Response, jsonify
 from flask_cors import CORS
 import os
 import json
 from pymongo.mongo_client import MongoClient
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(24)
 CORS(app)
 
 @app.route('/')
@@ -22,13 +21,60 @@ def getrank():
 def getintroduce():
     return render_template('/Introduce.html')
 
-@app.route('/login')
+@app.route('/login',methods=['GET',"POST"])
 def getlogin():
+    if request.method == 'POST':
+        if not request.form['username'] or not request.form['password']:
+            flash('未填入帳號密碼', 'error')
+        else:
+            uri = os.environ.get('URL')
+            db_name = "rank"
+            collection_name = "User"
+            client = MongoClient(uri)
+            database = client[db_name]
+            collection = database[collection_name]
+            users = collection.find({"username": request.form['username']})
+            print(users)
+            if users is not None:
+                if users.password == request.form['password']:
+                    session['username'] = request.form['username']
+                    return redirect(url_for('MainPage'))
+                else:
+                    flash('密碼錯誤', 'error')
+            else:
+                flash('不存在的用戶', 'error')
     return render_template('/Login.html')
 
-@app.route('/register')
+@app.route('/register',methods=['GET',"POST"])
 def getregister():
+    if request.method == 'POST':
+        if not request.form['username'] or not request.form['password'] or not request.form['confirmpassword']:
+            flash('未填入完整', 'error')
+        else:
+            uri = os.environ.get('URL')
+            db_name = "rank"
+            collection_name = "User"
+            client = MongoClient(uri)
+            database = client[db_name]
+            collection = database[collection_name]
+            users = collection.find({"username": request.form['username']})
+            print(users)
+            if users is None:
+                if request.form['confirmpassword'] == request.form['password']:
+                    collection.insert_one({'username':request.form['username'],'password':request.form['password']}) #加入資料庫
+                    session['username'] = request.form['username']
+                    return redirect(url_for('MainPage'))
+                else:
+                    flash('確認密碼與密碼不同', 'error')
+            else:
+                flash('已存在的用戶', 'error')
     return render_template('/Register.html')
+
+@app.route('/User',methods=['GET'])
+def getuser():
+    if session.get('username') is None:
+        redirect(url_for('login'))
+    return render_template('/User.html')
 
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
@@ -110,3 +156,12 @@ def getrecord():
     sortjson = json.dumps(jsonlist)
     print("find data")
     return Response(sortjson, mimetype='text/json')
+
+@app.route('/checklogin',methods=["GET"])
+def checklogin():
+    if session.get('username') is None:
+        j = {'islogin': 0,'username':"No"}
+        return jsonify(j)
+    else:
+        j = {'islogin': 1,'username':session.get('username')}
+        return jsonify(j)
