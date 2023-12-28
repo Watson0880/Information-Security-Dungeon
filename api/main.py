@@ -22,6 +22,14 @@ def getrank():
 def getintroduce():
     return render_template('/Introduce.html')
 
+@app.route('/login')
+def getlogin():
+    return render_template('/Iogin.html')
+
+@app.route('/register')
+def getregister():
+    return render_template('/Register.html')
+
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
     data = request.get_data()
