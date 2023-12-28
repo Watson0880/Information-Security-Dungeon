@@ -58,7 +58,11 @@ def getregister():
             database = client[db_name]
             collection = database[collection_name]
             users = collection.find({"username": request.form['username']})
-            print(users)
+            try:
+                for i in users:
+                    print(i)
+            except:
+                print(users)
             if users is None:
                 if request.form['confirmpassword'] == request.form['password']:
                     collection.insert_one({'username':request.form['username'],'password':request.form['password']}) #加入資料庫
