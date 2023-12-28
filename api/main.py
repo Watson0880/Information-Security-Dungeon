@@ -33,7 +33,7 @@ def getlogin():
             client = MongoClient(uri)
             database = client[db_name]
             collection = database[collection_name]
-            users = collection.find({"username": request.form['username']})
+            users = collection.find_one({"username": request.form['username']})
             print(users)
             if users is not None:
                 if users['password'] == request.form['password']:
@@ -57,7 +57,7 @@ def getregister():
             client = MongoClient(uri)
             database = client[db_name]
             collection = database[collection_name]
-            users = collection.find({"username": request.form['username']})
+            users = collection.find_one({"username": request.form['username']})
             try:
                 for i in users:
                     print(i)
