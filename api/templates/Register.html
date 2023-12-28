@@ -203,7 +203,7 @@
                     <div class="Header">                        
                         <div class="App-header2">
                             <h1>註冊</h1>
-                            <form>
+                            <form action = "{{ request.path }}" method = "post">
                                 <P>
                                     <label>帳號</label><br>
                                     <input type="text" name = "username">
