@@ -161,7 +161,9 @@ def getrecord():
 def checklogin():
     if session.get('username') is None:
         j = {'islogin': 0,'username':"No"}
+        j = json.dumps(j)
         return jsonify(j)
     else:
         j = {'islogin': 1,'username':session.get('username')}
+        j = json.dumps(j)
         return jsonify(j)
