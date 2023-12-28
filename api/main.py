@@ -43,7 +43,8 @@ def getlogin():
                     flash('密碼錯誤', 'error')
             else:
                 flash('不存在的用戶', 'error')
-    return render_template('/Login.html')
+    else:
+        return render_template('/Login.html')
 
 @app.route('/register',methods=['GET',"POST"])
 def getregister():
@@ -68,7 +69,8 @@ def getregister():
                     flash('確認密碼與密碼不同', 'error')
             else:
                 flash('已存在的用戶', 'error')
-    return render_template('/Register.html')
+    else:
+        return render_template('/Register.html')
 
 @app.route('/User',methods=['GET'])
 def getuser():
