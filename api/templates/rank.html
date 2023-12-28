@@ -289,37 +289,37 @@
                             <a class="LinkButton" href="/introduce">遊戲介紹</a>
                             <a class="LinkButton" href="/rank">排行榜</a>
                             
-                        </div>
-                        <script>
-                            var xhr2 = new XMLHttpRequest();
-                                        xhr2.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
-                                        xhr2.send(null);
-                                        xhr2.onload = function(){
-                                            if(xhr2.status == 200) {
-                                                retuenList = JSON.parse(xhr2.responseText);
-                                                if (retuenList['islogin']==0){
-                                                    newaNode = document.createElement('a');
-                                                    newaNode.className = "LinkButton";
-                                                    newaNode.href = '/login';
-                                                    newaNode.appendChild(document.createTextNode("登入/註冊"));
-                                                    document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
-                                                }
-                                                else{
-                                                    newaNode = document.createElement('a');
-                                                    newaNode.className = "LinkButton";
-                                                    newaNode.href = '/User';
-                                                    newaNode.appendChild(document.createTextNode(retuenList['username']));
-                                                    document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
-                                                }                                                                                          
-                                            }
-                                        }
-                        </script>
+                        </div>                        
                     </div>
                 </div>
             </div>
         </div>
     </div>  
 </body>
+<script>
+    var xhr2 = new XMLHttpRequest();
+                xhr2.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
+                xhr2.send(null);
+                xhr2.onload = function(){
+                    if(xhr2.status == 200) {
+                        retuenList = JSON.parse(xhr2.responseText);
+                        if (retuenList['islogin']==0){
+                            newaNode = document.createElement('a');
+                            newaNode.className = "LinkButton";
+                            newaNode.href = '/login';
+                            newaNode.appendChild(document.createTextNode("登入/註冊"));
+                            document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                        }
+                        else{
+                            newaNode = document.createElement('a');
+                            newaNode.className = "LinkButton";
+                            newaNode.href = '/User';
+                            newaNode.appendChild(document.createTextNode(retuenList['username']));
+                            document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                        }                                                                                          
+                    }
+                }
+</script>
 </html>
 
 <!--
