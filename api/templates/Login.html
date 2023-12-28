@@ -236,7 +236,31 @@
                             <a class="LinkButton" href="/">主畫面</a>
                             <a class="LinkButton" href="/introduce">遊戲介紹</a>
                             <a class="LinkButton" href="/rank">排行榜</a>
-                        </div >
+                        </div>
+                        <script>
+                            var xhr = new XMLHttpRequest();
+                                        xhr.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
+                                        xhr.send(null);
+                                        xhr.onload = function(){
+                                            if(xhr.status == 200) {
+                                                retuenList = JSON.parse(xhr.responseText);
+                                                if (retuenList['islogin']==0){
+                                                    newaNode = document.createElement('a');
+                                                    newaNode.className = "LinkButton";
+                                                    newaNode.href = '/login';
+                                                    newaNode.appendChild(document.createTextNode("登入/註冊"));
+                                                    document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                                                }
+                                                else{
+                                                    newaNode = document.createElement('a');
+                                                    newaNode.className = "LinkButton";
+                                                    newaNode.href = '/User';
+                                                    newaNode.appendChild(document.createTextNode(retuenList['username']));
+                                                    document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                                                }                                                                                          
+                                            }
+                                        }
+                        </script>
                     </div>
                 </div>
             </div>
