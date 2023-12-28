@@ -5,8 +5,10 @@ import json
 from pymongo.mongo_client import MongoClient
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.urandom(24)
 CORS(app, supports_credentials=True)
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+
 
 @app.route('/')
 @app.route('/MainPage')
