@@ -233,6 +233,7 @@
 <script>
     var xhr = new XMLHttpRequest();
                 xhr.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
+                xhr.withCredentials = true;  // 允许发送凭据
                 xhr.send(null);
                 xhr.onload = function(){
                     if(xhr.status == 200) {
