@@ -24,7 +24,7 @@ def getintroduce():
 @app.route('/login',methods=['GET',"POST"])
 def getlogin():
     if request.method == 'POST':
-        if not request.form['username'] or not request.form['password']:
+        if  request.form['username'] == "" or request.form['password'] == "":
             flash('未填入帳號密碼', 'error')
         else:
             uri = os.environ.get('URL')
@@ -48,7 +48,7 @@ def getlogin():
 @app.route('/register',methods=['GET',"POST"])
 def getregister():
     if request.method == 'POST':
-        if not request.form['username'] or not request.form['password'] or not request.form['confirmpassword']:
+        if request.form['username'] == "" or request.form['password'] == "" or request.form['confirmpassword'] == "":
             flash('未填入完整', 'error')
         else:
             uri = os.environ.get('URL')
