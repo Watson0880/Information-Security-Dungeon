@@ -193,14 +193,14 @@
                                             retuenList = JSON.parse(xhr.responseText);
                                             if (retuenList[0]['islogin']==0){
                                                 newaNode = document.createElement('a');
-                                                newaNode.class = "LinkButton";
+                                                newaNode.className = "LinkButton";
                                                 newaNode.href = '/login';
                                                 newaNode.appendChild(document.createTextNode("登入/註冊"));
                                                 document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
                                             }
                                             else{
                                                 newaNode = document.createElement('a');
-                                                newaNode.class = "LinkButton";
+                                                newaNode.className = "LinkButton";
                                                 newaNode.href = '/User';
                                                 newaNode.appendChild(document.createTextNode(retuenList[0]['username']));
                                                 document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
