@@ -43,8 +43,7 @@ def getlogin():
                     flash('密碼錯誤', 'error')
             else:
                 flash('不存在的用戶', 'error')
-    else:
-        return render_template('/Login.html')
+    return render_template('/Login.html')
 
 @app.route('/register',methods=['GET',"POST"])
 def getregister():
@@ -63,14 +62,12 @@ def getregister():
             if users is None:
                 if request.form['confirmpassword'] == request.form['password']:
                     collection.insert_one({'username':request.form['username'],'password':request.form['password']}) #加入資料庫
-                    session['username'] = request.form['username']
                     return redirect(url_for('getMainPage'))
                 else:
                     flash('確認密碼與密碼不同', 'error')
             else:
                 flash('已存在的用戶', 'error')
-    else:
-        return render_template('/Register.html')
+    return render_template('/Register.html')
 
 @app.route('/User',methods=['GET'])
 def getuser():
