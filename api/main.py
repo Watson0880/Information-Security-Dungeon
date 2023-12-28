@@ -36,7 +36,7 @@ def getlogin():
             users = collection.find({"username": request.form['username']})
             print(users)
             if users is not None:
-                if users[0]['password'] == request.form['password']:
+                if users['password'] == request.form['password']:
                     session['username'] = request.form['username']
                     return redirect(url_for('getMainPage'))
                 else:
