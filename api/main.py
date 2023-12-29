@@ -164,6 +164,7 @@ def getrecord():
 
 @app.route('/checklogin',methods=["GET"])
 def checklogin():
+    print(session.get('username'))
     if session.get('username')==None:
         j = {'islogin': 0,'username':"No"}
         j = json.dumps(j)
