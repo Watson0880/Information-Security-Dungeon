@@ -77,7 +77,7 @@ def getregister():
 
 @app.route('/User',methods=['GET'])
 def getuser():
-    if not session.get('username'):
+    if session.get('username')==None:
         redirect(url_for('getlogin'))
     return render_template('/User.html')
 
@@ -164,7 +164,7 @@ def getrecord():
 
 @app.route('/checklogin',methods=["GET"])
 def checklogin():
-    if not session.get('username'):
+    if session.get('username')==None:
         j = {'islogin': 0,'username':"No"}
         j = json.dumps(j)
         return Response(j, mimetype='text/json')
