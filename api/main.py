@@ -78,7 +78,9 @@ def getregister():
 
 @app.route('/User',methods=['GET'])
 def getuser():
-    if session.get('username')==None:
+    print(session.get('username'))
+    if session.get('username') is None:
+        print(session.get('username'))
         redirect(url_for('getlogin'))
     return render_template('/User.html')
 
