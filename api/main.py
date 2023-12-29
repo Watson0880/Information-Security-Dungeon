@@ -1,5 +1,6 @@
 from flask import Flask, request, flash, url_for, redirect, render_template, make_response, session, Response, jsonify
 from flask_cors import CORS
+from datetime import timedelta
 import os
 import json
 from pymongo.mongo_client import MongoClient
@@ -8,7 +9,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
-
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 
 @app.route('/')
 @app.route('/MainPage')
