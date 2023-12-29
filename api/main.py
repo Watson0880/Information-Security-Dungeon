@@ -81,7 +81,7 @@ def getuser():
     print(session.get('username'))
     if session.get('username') is None:
         print(session.get('username'))
-        redirect(url_for('getlogin'))
+        return redirect(url_for('getlogin'))
     return render_template('/User.html')
 
 @app.route('/uploadrecord',methods=["POST"])
