@@ -4,14 +4,11 @@ from datetime import timedelta
 import os
 import json
 from pymongo.mongo_client import MongoClient
-from flask_session import Session
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-app.config['SESSION_TYPE'] = 'cookie'
+app.secret_key = 'testsecritykey'
 app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
-Session(app)
 CORS(app, supports_credentials=True)
 
 @app.route('/')
