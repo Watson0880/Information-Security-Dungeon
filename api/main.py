@@ -76,7 +76,7 @@ def getregister():
                 flash('已存在的用戶', 'error')
     return render_template('/Register.html')
 
-@app.route('/User',methods=['GET'])
+@app.route('/User',methods=['GET','POST'])
 def getuser():
     print(session.get('username'))
     if session.get('username') is None:
