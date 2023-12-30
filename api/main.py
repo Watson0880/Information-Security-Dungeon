@@ -82,6 +82,24 @@ def getuser():
     if session.get('username') is None:
         print(session.get('username'))
         return redirect(url_for('getlogin'))
+    if request.method == 'POST':
+        if request.values.get('changepassword') == "變更密碼":
+            uri = os.environ.get('URL')
+            db_name = "rank"
+            collection_name = "User"
+            client = MongoClient(uri)
+            database = client[db_name]
+            collection = database[collection_name]
+            users = collection.find_one({"username": session['username']})
+            if users['password'] == request.form['oldpassword']:
+                collection.update_one({"username":session['username']},{"$set": { "password": request.form['newpassword'] }})
+                return redirect(url_for('getuser'))
+            else:
+                flash('密碼錯誤', 'error')
+            return
+        if request.values.get('logout') == "Logout":
+            session['username'] = None
+            return redirect(url_for('getMainPage'))
     return render_template('/User.html')
 
 @app.route('/uploadrecord',methods=["POST"])

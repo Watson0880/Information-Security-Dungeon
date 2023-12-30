@@ -216,7 +216,48 @@
                 <div class="Content">
                     <div class="Header">                        
                         <div class="App-header2">
-                            
+                            <h1>使用者資料</h1>
+                            {% for mesg in get_flashed_messages() %}
+                            <h2 style="color: red;">{{ mesg }}</h2>
+                            {% endfor %}
+                            <div class="display:flex">
+                                <div>
+                                    <form action="/User" method="post">
+                                        <table>
+                                            <tr class="username">
+                                                <td>
+                                                    <label style="color:#8d9091;">使用者帳號</label>
+                                                </td>
+                                                <!--
+                                                <td>
+                                                    <label>使用者帳號</label>
+                                                </td>
+                                                -->
+                                            </tr>
+                                            <tr class="password">
+                                                <td>
+                                                    <label style="color:#8d9091;">變更密碼</label>
+                                                </td>
+                                                <td>
+                                                    <input type="password" name ="oldpassword" placeholder="舊密碼">
+                                                    <input type="password" name ="newpassword" placeholder="新密碼">
+                                                    <input type="submit" value="變更密碼" name="changepassword">
+                                                </td>
+                                            </tr>
+                                            <tr class="logout">  
+                                                <td>
+                                                    <label></label>
+                                                </td>                               
+                                                <td>
+                                                    <input type="submit" value="Logout" name="logout">
+                                                </td>                        
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
                         </div>
                         <div class="TopBanner">                           
                             <a class="LinkButton" href="/">主畫面</a>
@@ -251,6 +292,12 @@
                             newaNode.href = '/User';
                             newaNode.appendChild(document.createTextNode(retuenList['username']));
                             document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+
+                            usernameTdNode = document.createElement('td');
+                            usernamelabelNode = document.createElement('label');
+                            usernamelabelNode.appendChild(document.createTextNode(retuenList['username']));
+                            usernameTdNode.appendChild(usernamelabelNode);
+                            document.getElementsByClassName('username')[0].appendChild(usernameTdNode);
                         }                                                                                          
                     }
                 }
