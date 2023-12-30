@@ -96,7 +96,6 @@ def getuser():
                 return redirect(url_for('getuser'))
             else:
                 flash('密碼錯誤', 'error')
-            return
         if request.values.get('logout') == "Logout":
             session['username'] = None
             return redirect(url_for('getMainPage'))
