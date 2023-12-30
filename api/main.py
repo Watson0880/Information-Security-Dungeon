@@ -6,7 +6,7 @@ import json
 from pymongo.mongo_client import MongoClient
 
 app = Flask(__name__)
-app.secret_key = 'testsecritykey'
+app.secret_key = os.environ.get('securitykey')
 app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 CORS(app, supports_credentials=True)
