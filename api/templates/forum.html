@@ -333,7 +333,7 @@
         xhr1.onload = function(){
             if(xhr1.status == 200) {
                 retuenList = JSON.parse(xhr1.responseText);
-                for(var i=0; i<recordList.length; i++) {
+                for(var i=0; i<retuenList.length; i++) {
                     newTrNode = document.createElement('tr');
                     
                     authTdNode = document.createElement('td');
