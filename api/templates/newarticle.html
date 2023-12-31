@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>ISD MainPage</title>
+    <title>ISD Rank</title>
     <style>
         div {
             display: block;
@@ -14,7 +14,7 @@
         }
         .LeftGradient{
             height: 100%;
-            width: calc(50% - 700px);
+            width: calc(50% - 707px);
             position: fixed;
             background: linear-gradient(270deg,#000,transparent);
             top: 0;
@@ -23,7 +23,7 @@
         }
         .RightGradient{
             height: 100%;
-            width: calc(50% - 700px);
+            width: calc(50% - 693px);
             position: fixed;
             background: linear-gradient(90deg,#000,transparent);
             right: 0;
@@ -32,7 +32,10 @@
         }
         .APP{
             text-align: center;
-            overflow-y: auto;
+            overflow-y: scroll;
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
         .Content {
             position: absolute;
@@ -62,7 +65,7 @@
             top: 0;
             color: #fff;
             box-shadow: 0 0 9px rgba(0,0,0,.39215686274509803);
-            padding: 0 0px 0 0;
+            padding: 0 0 0 0;
             height: 81px;
             flex-direction: row;
         }
@@ -158,36 +161,92 @@
             margin-left: 2.5%;
             image-rendering: pixelated;
         }
+        .App-header2 {
+            position: absolute;
+            top: 81px;
+            left: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: calc(10px + 1.5vmin);
+            color: black;
+            background-color: #ededed;
+        }
+        h1 {
+            margin: 1.5em 0;
+            font-weight: normal;
+            text-align: center;
+        }
+        h2 {
+            margin: 1.2em 0;
+        }
+        h1, h2 {
+            font-family: 'Bree Serif', serif;
+            font-weight: normal;
+        }
+        .content {
+            max-width: 600px;
+            margin: 1em auto;
+        }
+        .LinkButtonBlack {
+            height: 100%;
+            font-family: Oxygen,sans-serif;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            letter-spacing: .75px;
+            height: 81px;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            font-size: large;
+        }
     </style>
 </head>
-    
+
 <body style="margin: 0px;">
-    <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
-        <div class="LeftGradient"></div>
-        <div class="RightGradient"></div>
-        <div class="APP">
-            <div class="Content">
-                <div class="Header">
-                    <div class="bg-container">
-                        <img class="App-bg" src="static/GamePicture1.png">
-                        <img class="App-mid" src="static/Midforest.png">
-                    </div>
-                    <header class="App-header">
-                        <img src="static/ICON.png" class="Pixel-Logo" alt="logo">
-                        <a class="DownloadButton" href="https://drive.google.com/drive/folders/1QbJT9lW9PKX_lGdUHmNVVfJphYe0B1Mu">
-                            <div class="DownloadText">下載連結</div>
-                        </a>
-                    </header>
-                    <div class="TopBanner">
-                        <a class="LinkButton" href="/">主畫面</a>
-                        <a class="LinkButton" href="/introduce">遊戲介紹</a>
-                        <a class="LinkButton" href="/rank">排行榜</a>
-                        <a class="LinkButton" href="/rank">討論區</a>
+    <div style="display: block;">
+        <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
+            <div class="LeftGradient"></div>
+            <div class="RightGradient"></div>
+            <div class="APP">
+                <div class="Content">
+                    <div class="Header">                        
+                        <div class="App-header2">
+                            <h1>新增文章</h1>
+                            {% for mesg in get_flashed_messages() %}
+                            <h2 style="color: red;">{{ mesg }}</h2>
+                            {% endfor %}
+                            <form action = "{{ request.path }}" method = "post">
+                                <P>
+                                    <label>文章標題</label><br>
+                                    <input type="text" placeholder="輸入標題..." name = "name" size="73">
+                                </P>
+                                <P>
+                                    <label>內容</label><br>
+                                    <textarea name ="context" rows="15" cols="75" placeholder="輸入內容..."  minlength="1" maxlength="1024"></textarea>
+                                </P>
+                                <P>
+                                    <button>上傳</button>
+                                </P>
+                            </form>
+                            <a class="LinkButtonBlack" href="/register">沒有帳號? 點我註冊</a>
+                        </div>
+                        <div class="TopBanner">                           
+                            <a class="LinkButton" href="/">主畫面</a>
+                            <a class="LinkButton" href="/introduce">遊戲介紹</a>
+                            <a class="LinkButton" href="/rank">排行榜</a>
+                            <a class="LinkButton" href="/rank">討論區</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  
 </body>
 <script>
     var xhr = new XMLHttpRequest();
@@ -215,3 +274,4 @@
                 }
 </script>
 </html>
+

@@ -3,6 +3,7 @@ from flask_cors import CORS
 from datetime import timedelta
 import os
 import json
+import time
 from pymongo.mongo_client import MongoClient
 
 app = Flask(__name__)
@@ -101,6 +102,32 @@ def getuser():
             return redirect(url_for('getMainPage'))
     return render_template('/User.html')
 
+@app.route('/forum')
+def getforum():
+    return render_template('/forum.html')
+
+@app.route('/newarticle',methods=['GET','POST'])
+def Newarticle():
+    if session.get('username') is None:
+        print(session.get('username'))
+        return redirect(url_for('getlogin'))
+    if request.method == 'POST':
+        if request.form['name'] == "" or request.form['context'] == "":
+            flash('請輸入標題或內容', 'error')
+        else:
+            uri = os.environ.get('URL')
+            db_name = "rank"
+            collection_name = "Article"
+            client = MongoClient(uri)
+            database = client[db_name]
+            collection = database[collection_name]
+            t = time.time()
+            t1 = time.localtime(t)
+            t2 = time.strftime('%Y/%m/%d %H:%M:%S',t1)
+            collection.insert_one({'art-title':request.form['name'],'art-txt':request.form['context'],'art-auth':session.get('username'),'lastuploadtime':t2})
+            return redirect(url_for('getforum'))
+    return render_template('/newarticle.html')
+
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
     data = request.get_data()
@@ -193,3 +220,14 @@ def checklogin():
         j = {'islogin': 1,'username':session.get('username')}
         j = json.dumps(j)
         return Response(j, mimetype='text/json')
+
+@app.route('/gettitle',methods=["GET"])
+def gettitle():
+    uri = os.environ.get('URL')
+    db_name = "rank"
+    collection_name = "Article"
+    client = MongoClient(uri)
+    database = client[db_name]
+    collection = database[collection_name]
+    j = {'islogin': 1,'username':session.get('username')}
+    return Response(j, mimetype='text/json')
