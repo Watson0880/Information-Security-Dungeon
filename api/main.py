@@ -229,5 +229,10 @@ def gettitle():
     client = MongoClient(uri)
     database = client[db_name]
     collection = database[collection_name]
-    j = {'islogin': 1,'username':session.get('username')}
+    jsonlist = []
+    datas = collection.find({},{"_id": 1,'art-auth':1, "art-title":1,'lastuploadtime':1})
+    for data in datas:
+        article = {"_id":str(data['_id']),'art-auth':data['art-auth'][0],"art-title":data['art-title'],'lastuploadtime':data['lastuploadtime']}
+        jsonlist.append(article)
+    j = json.dumps(jsonlist) 
     return Response(j, mimetype='text/json')

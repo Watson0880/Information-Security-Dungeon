@@ -269,17 +269,14 @@
                             <table style="margin: auto">
                                 <thead>
                                 </thead>
-                                <tbody>
-                                    
+                                <tbody>                                   
                                     <tr style="background: #d4d4d4;">
                                         <td class="showusername">
                                             <p>watson0880<p>
                                         </td>                             
                                         <td class="showarticle">                                           
                                             <a class="articlelink" href="">
-                                                <p class="article">
-                                                    這是一個測試發文
-                                                </p>
+                                                <p class="article">這是一個測試發文</p>
                                             </a>                                                                                                                  
                                         </td>
                                         <td class="showtime">
@@ -306,28 +303,69 @@
 </body>
 <script>
     var xhr = new XMLHttpRequest();
-                xhr.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
-                xhr.withCredentials = true;  // 允许发送凭据
-                xhr.send(null);
-                xhr.onload = function(){
-                    if(xhr.status == 200) {
-                        retuenList = JSON.parse(xhr.responseText);
-                        if (retuenList['islogin']==0){
-                            newaNode = document.createElement('a');
-                            newaNode.className = "LinkButton";
-                            newaNode.href = '/login';
-                            newaNode.appendChild(document.createTextNode("登入/註冊"));
-                            document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
-                        }
-                        else{
-                            newaNode = document.createElement('a');
-                            newaNode.className = "LinkButton";
-                            newaNode.href = '/User';
-                            newaNode.appendChild(document.createTextNode(retuenList['username']));
-                            document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
-                        }                                                                                          
-                    }
+        xhr.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
+        xhr.withCredentials = true;  // 允许发送凭据
+        xhr.send(null);
+        xhr.onload = function(){
+            if(xhr.status == 200) {
+                retuenList = JSON.parse(xhr.responseText);
+                if (retuenList['islogin']==0){
+                    newaNode = document.createElement('a');
+                    newaNode.className = "LinkButton";
+                    newaNode.href = '/login';
+                    newaNode.appendChild(document.createTextNode("登入/註冊"));
+                    document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
                 }
+                else{
+                    newaNode = document.createElement('a');
+                    newaNode.className = "LinkButton";
+                    newaNode.href = '/User';
+                    newaNode.appendChild(document.createTextNode(retuenList['username']));
+                    document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                }                                                                                          
+            }
+        }
+    var xhr1 = new XMLHttpRequest();
+        xhr1.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
+        xhr1.withCredentials = true;  // 允许发送凭据
+        xhr1.send(null);
+        xhr1.onload = function(){
+            if(xhr1.status == 200) {
+                retuenList = JSON.parse(xhr1.responseText);
+                for(var i=0; i<recordList.length; i++) {
+                    newTrNode = document.createElement('tr');
+                    
+                    authTdNode = document.createElement('td');
+                    authTdNode.className = "showusername";
+                    authpNode =  document.createElement('p');
+                    authpNode.appendChild(document.createTextNode(retuenList[i]['art-auth']));
+                    authTdNode.appendChild(authpNode);
+
+                    titleTdNode = document.createElement('td');
+                    titleTdNode.className = "showarticle";
+                    titleaNode = document.createElement('a');
+                    titleaNode.className = "articlelink";
+                    titleaNode.href = "/findarticle/"+retuenList[i]['_id'];
+                    titlepNode = document.createElement('p');
+                    titlepNode.appendChild(document.createTextNode(retuenList[i]['art-title']));
+                    titleaNode.appendChild(titlepNode);
+                    titleTdNode.appendChild(titleaNode);
+
+                    timeTdNode = document.createElement('td');
+                    timeTdNode.className = "showtime";
+                    timepNode =  document.createElement('p');
+                    timepNode.appendChild(document.createTextNode(retuenList[i]['lastuploadtime']));
+                    timeTdNode.appendChild(timepNode);
+
+                    newTrNode.appendChild(authTdNode);
+                    newTrNode.appendChild(titleTdNode);
+                    newTrNode.appendChild(timeTdNode);
+
+
+                    document.getElementsByTagName('tbody')[0].appendChild(newTrNode);
+                }                                                                                         
+            }
+        }
 </script>
 </html>
 
