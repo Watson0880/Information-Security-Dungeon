@@ -238,14 +238,15 @@
             text-decoration: none;
         }
         .showtime {
-            line-height: 1;
-            padding: 7px 12px;
+            position: relative;
+            display: table-cell;
+            padding: 7px 10px 7px 20px;
             width: 100px;
-            min-width: 100px;
             text-align: center;
             font-size: 12px;
             box-sizing: border-box;
-            margin: 0;
+            float: none;
+            color :#000;
         }
     </style>
 </head>
@@ -270,10 +271,10 @@
                                 <thead>
                                 </thead>
                                 <tbody> 
-                                    <!--                                  
+                                    <!--                                
                                     <tr style="background: #d4d4d4;">
                                         <td class="showusername">
-                                            <p>watson0880<p>
+                                            <p>watson0880</p>
                                         </td>                             
                                         <td class="showarticle">                                           
                                             <a class="articlelink" href="">
@@ -348,6 +349,7 @@
                     titleaNode.className = "articlelink";
                     titleaNode.href = "/findarticle/"+retuenList[i]['_id'];
                     titlepNode = document.createElement('p');
+                    titlepNode.className = "article";
                     titlepNode.appendChild(document.createTextNode(retuenList[i]['art-title']));
                     titleaNode.appendChild(titlepNode);
                     titleTdNode.appendChild(titleaNode);
