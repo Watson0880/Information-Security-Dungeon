@@ -146,7 +146,7 @@ def findarticle(_id):
         datas['lastuploadtime'] = t2
         collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
         collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
-        return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],username:session.get('username')})
+        return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
     uri = os.environ.get('URL')
     db_name = "rank"
     collection_name = "Article"
@@ -158,7 +158,7 @@ def findarticle(_id):
     print(datas)
     data = {"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']}
     data = json.dumps(data) 
-    return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],username:session.get('username')})
+    return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
 
 @app.route('/reply/<_id>', methods = ["GET","POST"])
 def reply(_id):
@@ -181,7 +181,7 @@ def reply(_id):
             datas['lastuploadtime'] = t2
             collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
             collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
-            return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],username:session.get('username')})
+            return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
     return render_template('/reply.html',data={"_id":_id})
 
 
