@@ -264,7 +264,7 @@
 
 <body style="margin: 0px;">
     <div style="display: block;">
-        <div class="AppContainer" style="background-image: url('static/backgroundpicture.png');">
+        <div class="AppContainer" style="background-image: url('../static/backgroundpicture.png');">
             <div class="LeftGradient"></div>
             <div class="RightGradient"></div>
             <div class="APP">
@@ -289,15 +289,17 @@
                                         </tr>                                     
                                     </thead>                                
                                     <tbody> 
-                                        {% for i in range(len(data['art-txt'])) %}
-                                            <td class="showusername">
-                                                <p>{{data['art-auth'][i]}}</p>
-                                            </td>                             
-                                            <td class="showarticle">                                           
-                                                <a class="articlelink" href="">
-                                                    <p class="article">{{data['art-txt'][i]}}</p>
-                                                </a>                                                                                                                  
-                                            </td>
+                                        {% for i in range(data['art-txt'] | length) %}
+                                            <tr style="background: #d4d4d4;">
+                                                <td class="showusername">
+                                                    <p>{{data['art-auth'][i]}}</p>
+                                                </td>                             
+                                                <td class="showarticle">                                           
+                                                    <a class="articlelink" href="">
+                                                        <p class="article">{{data['art-txt'][i]}}</p>
+                                                    </a>                                                                                                                  
+                                                </td>
+                                            </tr>                                          
                                         {% endfor %}
                                         <!--  
                                         <tr style="background: #d4d4d4;">
