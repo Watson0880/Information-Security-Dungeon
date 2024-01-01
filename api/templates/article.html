@@ -284,22 +284,33 @@
                                                 <p>作者</p>
                                             </td>                             
                                             <td class="showtitle">
-                                                {% for i in data %}
-                                                <p>{{i.title}}</p>
-                                                {% endfor %}
+                                                <p>{{ data[0]['title'] }}</p>
                                             </td>
                                             <td class="showusername">
                                                 <p>更新時間</p>
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <p>{{data[0]['art-title']}}</p>
-                                    <p>{{data[0]['lastuploadtime']}}</p>
-                                    <p>{{data['art-txt']}}</p>
-                                    <p>{{data['art-auth']}}</p>
-                                    
+                                            </td>                                           
+                                        </tr>                                     
+                                    </thead>                                
                                     <tbody> 
-                                        <!--                                
+                                        
+                                        <!--  
+                                         <td class="showusername">
+                                                {% for i in data['art-auth'] %}
+                                                <p>{{ data['art-auth'][i] }}</p>
+                                                {% endfor %}
+                                            </td>                             
+                                            <td class="showtitle">
+                                                {% for i in data['title'] %}
+                                                <p>{{ data['title'][i] }}</p>
+                                                {% endfor %}
+                                            </td>
+                                            <td class="showusername">
+                                                {% for i in data['lastuploadtime'] %}
+                                                <p>{{ data['lastuploadtime'][i] }}</p>
+                                                {% endfor %}
+                                            </td>   
+                                            
+
                                         <tr style="background: #d4d4d4;">
                                             <td class="showusername">
                                                 <p>watson0880</p>
