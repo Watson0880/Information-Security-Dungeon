@@ -147,7 +147,7 @@ def findarticle(_id):
         print(datas)
         collection.update_one({"_id": ObjectId(_id)},{"$set":{'art-txt':datas['art-txt']}})
         collection.update_one({"_id": ObjectId(_id)},{"$set":{'lastuploadtime':t2}})
-        return redirect(url_for('findarticle'))
+        return redirect(url_for('findarticle',_id=request.form['_id']))
     uri = os.environ.get('URL')
     db_name = "rank"
     collection_name = "Article"
