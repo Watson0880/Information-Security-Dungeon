@@ -142,7 +142,7 @@ def findarticle(_id):
     print(datas)
     data = {"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']}
     data = json.dumps(data) 
-    return render_template('/article.html',data=data)
+    return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']})
 
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
