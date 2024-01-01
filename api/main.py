@@ -132,7 +132,7 @@ def Newarticle():
 @app.route('/findarticle/<_id>', methods = ["GET","POST"])
 def findarticle(_id):
     if request.method == 'POST':
-        uri = os.environ.get('URL')
+        uri = os.environ.get('URL') 
         db_name = "rank"
         collection_name = "Article"
         client = MongoClient(uri)
@@ -142,7 +142,7 @@ def findarticle(_id):
         t1 = time.localtime(t)
         t2 = time.strftime('%Y/%m/%d %H:%M:%S',t1)
         datas = collection.find_one({"_id": ObjectId(_id)},{'art-txt':1})
-        datas['art-txt'][int(request.values.get('deletebutton'))] = "該回覆已被刪除"
+        datas['art-txt'][int(request.values.get('deletebutton'))] = "該回覆已被刪除" #delete回覆 delete -> post
         datas['lastuploadtime'] = t2
         print(datas)
         collection.update_one({"_id": ObjectId(_id)},{"$set":{'art-txt':datas['art-txt']}})
