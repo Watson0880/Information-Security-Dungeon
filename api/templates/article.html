@@ -272,9 +272,6 @@
                     <div class="Header">                        
                         <div class="App-header"></div>
                         <div class="App-header2">
-                            <form>
-                                <input type="hidden" name="_id" value="{{data['_id']}}">
-                            </form>
                             <h2>{{ data['art-title'] }}</h2>
                             <div style="display: flex;">
                                 <a class="LinkButton2" href="/reply/{{data['_id']}}">回覆</a>
@@ -306,6 +303,7 @@
                                                 {% if data['art-auth'][i]==data['username'] and  data['art-txt'][i]!= '該回覆已被刪除'%}
                                                 <td class="showusername">
                                                     <form action = "{{ request.path }}" method = "POST">
+                                                        <input type="hidden" name="_id" value="{{data['_id']}}">
                                                         <button name="deletebutton" value="{{i}}">刪除</button>
                                                     </form>
                                                 </td>
