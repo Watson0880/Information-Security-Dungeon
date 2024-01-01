@@ -303,7 +303,7 @@
                                                 <td class="showarticle">                                           
                                                     <p class="article">{{data['art-txt'][i]}}</p>                                                                                                                 
                                                 </td>
-                                                {% if data['art-auth'][i]==data['username'] %}
+                                                {% if data['art-auth'][i]==data['username'] and  data['art-txt'][i]!= '該回覆已被刪除'%}
                                                 <td class="showusername">
                                                     <form action = "{{ request.path }}" method = "POST">
                                                         <button name="deletebutton" value="{{i}}">刪除</button>
