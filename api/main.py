@@ -5,6 +5,7 @@ import os
 import json
 import time
 from pymongo.mongo_client import MongoClient
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('securitykey')
@@ -136,7 +137,7 @@ def findarticle(_id):
     client = MongoClient(uri)
     database = client[db_name]
     collection = database[collection_name]
-    datas = collection.find_one({"_id":_id})
+    datas = collection.find_one({"_id": ObjectId(_id)})
     print(_id)
     print(datas)
     data = {"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']}
