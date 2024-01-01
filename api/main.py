@@ -147,7 +147,7 @@ def findarticle(_id):
         print(datas)
         collection.update_one({"_id": ObjectId(_id)},{"$set":{'art-txt':datas['art-txt']}})
         collection.update_one({"_id": ObjectId(_id)},{"$set":{'lastuploadtime':t2}})
-        return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
+        return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':t2,'username':session.get('username')})
     uri = os.environ.get('URL')
     db_name = "rank"
     collection_name = "Article"
