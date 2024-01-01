@@ -179,6 +179,7 @@ def reply(_id):
             datas['art-auth'].append(session.get('username'))
             datas['art-txt'].append(request.form['context'])
             datas['lastuploadtime'] = t2
+            collection.update_one({"_id": ObjectId(_id)},{"$set":{'art-auth':datas['art-auth']}})
             collection.update_one({"_id": ObjectId(_id)},{"$set":{'art-txt':datas['art-txt']}})
             collection.update_one({"_id": ObjectId(_id)},{"$set":{'lastuploadtime':t2}})
             return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
