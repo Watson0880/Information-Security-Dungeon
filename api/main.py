@@ -124,7 +124,7 @@ def Newarticle():
             t = time.time()
             t1 = time.localtime(t)
             t2 = time.strftime('%Y/%m/%d %H:%M:%S',t1)
-            collection.insert_one({'art-title':request.form['name'],'art-txt':request.form['context'],'art-auth':session.get('username'),'lastuploadtime':t2})
+            collection.insert_one({'art-title':request.form['name'],'art-txt':[request.form['context']],'art-auth':[session.get('username')],'lastuploadtime':t2})
             return redirect(url_for('getforum'))
     return render_template('/newarticle.html')
 
