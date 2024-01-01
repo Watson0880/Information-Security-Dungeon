@@ -163,6 +163,9 @@ def findarticle(_id):
 
 @app.route('/reply/<_id>', methods = ["GET","POST"])
 def reply(_id):
+    if session.get('username') is None:
+        print(session.get('username'))
+        return redirect(url_for('getlogin'))
     if request.method == 'POST':
         uri = os.environ.get('URL')
         db_name = "rank"
