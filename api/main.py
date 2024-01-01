@@ -129,8 +129,24 @@ def Newarticle():
             return redirect(url_for('getforum'))
     return render_template('/newarticle.html')
 
-@app.route('/findarticle/<_id>', methods = ["GET"])
+@app.route('/findarticle/<_id>', methods = ["GET","DELETE"])
 def findarticle(_id):
+    if request.method == 'DELETE':
+        uri = os.environ.get('URL')
+        db_name = "rank"
+        collection_name = "Article"
+        client = MongoClient(uri)
+        database = client[db_name]
+        collection = database[collection_name]
+        t = time.time()
+        t1 = time.localtime(t)
+        t2 = time.strftime('%Y/%m/%d %H:%M:%S',t1)
+        datas = collection.find_one({"_id": ObjectId(_id)},{'art-txt':1})
+        datas['art-txt'][request.values.get('deletebutton')] = "該回覆已被刪除"
+        datas['lastuploadtime'] = t2
+        collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
+        collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
+        return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],username:session.get('username')})
     uri = os.environ.get('URL')
     db_name = "rank"
     collection_name = "Article"
@@ -142,7 +158,32 @@ def findarticle(_id):
     print(datas)
     data = {"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']}
     data = json.dumps(data) 
-    return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']})
+    return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],username:session.get('username')})
+
+@app.route('/reply/<_id>', methods = ["GET","POST"])
+def reply(_id):
+    if request.method == 'POST':
+        uri = os.environ.get('URL')
+        db_name = "rank"
+        collection_name = "Article"
+        client = MongoClient(uri)
+        database = client[db_name]
+        collection = database[collection_name]
+        datas = collection.find_one({"_id": ObjectId(_id)})
+        if request.form['context'] == "":
+            flash('請輸入內容', 'error')
+        else:
+            t = time.time()
+            t1 = time.localtime(t)
+            t2 = time.strftime('%Y/%m/%d %H:%M:%S',t1)
+            datas['art-auth'].append(session.get('username'))
+            datas['art-txt'].append('art-txt':request.form['context'])
+            datas['lastuploadtime'] = t2
+            collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
+            collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
+            return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],username:session.get('username')})
+    return render_template('/reply.html',data={"_id"=_id})
+
 
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():

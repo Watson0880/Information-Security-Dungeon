@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ISD Rank</title>
+    <style>
+        div {
+            display: block;
+        }
+        .AppContainer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .LeftGradient{
+            height: 100%;
+            width: calc(50% - 707px);
+            position: fixed;
+            background: linear-gradient(270deg,#000,transparent);
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+        .RightGradient{
+            height: 100%;
+            width: calc(50% - 693px);
+            position: fixed;
+            background: linear-gradient(90deg,#000,transparent);
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .APP{
+            text-align: center;
+            overflow-y: scroll;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .Content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            margin: auto;
+            max-width: 1400px;
+            height: 100%;
+        }
+        .Header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding-top: 56.33333%;
+            box-sizing: border-box;
+        }
+        .TopBanner {
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background: black;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #fff;
+            box-shadow: 0 0 9px rgba(0,0,0,.39215686274509803);
+            padding: 0 0 0 0;
+            height: 81px;
+            flex-direction: row;
+        }
+        .LeftGroup{
+            display: flex;
+        }
+        .LinkButton {
+            height: 100%;
+            font-family: Oxygen,sans-serif;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            letter-spacing: .75px;
+            height: 81px;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            color: #f0f8ff;
+            font-size: large;
+        }
+        .App-header {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(10px + 2vmin);
+            color: #fff;
+            z-index: 2;
+        }
+        .DownloadButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1c84ca;
+            border-radius: 12px;
+            border: 2px solid #8d9091;
+            width: 60%;
+            max-width: 320px;
+            box-sizing: border-box;
+            padding: 10px 20px;
+            font-size: 22px;
+            margin: 0 auto 24px;
+            height: 81px;
+            text-transform: uppercase;
+            -webkit-animation: ZoomIntro .5s 1.25s both;
+            animation: ZoomIntro .5s 1.25s both;
+        }
+        .DownloadText {
+            font-weight: 600;
+            letter-spacing: .25px;
+        }
+        .bg-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .App-mid {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            image-rendering: pixelated;
+        }
+        .App-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            image-rendering: pixelated;
+        }
+        .Pixel-Logo {
+            -webkit-animation: ZoomIntro 1s;
+            animation: ZoomIntro 1s;
+            max-width: 120%;
+            max-height: 50%;
+            margin-left: 2.5%;
+            image-rendering: pixelated;
+        }
+        .App-header2 {
+            position: absolute;
+            top: 81px;
+            left: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: calc(10px + 1.5vmin);
+            color: black;
+            background-color: #ededed;
+        }
+        h1 {
+            margin: 1.5em 0;
+            font-weight: normal;
+            text-align: center;
+        }
+        h2 {
+            margin: 1.2em 0;
+        }
+        h1, h2 {
+            font-family: 'Bree Serif', serif;
+            font-weight: normal;
+        }
+        .content {
+            max-width: 600px;
+            margin: 1em auto;
+        }
+        .LinkButtonBlack {
+            height: 100%;
+            font-family: Oxygen,sans-serif;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            letter-spacing: .75px;
+            height: 81px;
+            text-transform: uppercase;
+            color: #000;
+            text-decoration: none;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body style="margin: 0px;">
+    <div style="display: block;">
+        <div class="AppContainer" style="background-image: url('../static/backgroundpicture.png');">
+            <div class="LeftGradient"></div>
+            <div class="RightGradient"></div>
+            <div class="APP">
+                <div class="Content">
+                    <div class="Header">                        
+                        <div class="App-header2">
+                            <h1>回覆文章</h1>
+                            {% for mesg in get_flashed_messages() %}
+                            <h2 style="color: red;">{{ mesg }}</h2>
+                            {% endfor %}
+                            <form action = "{{ request.path }}" method = "post">
+                                <P>
+                                    <label>內容</label><br>
+                                    <textarea name ="context" rows="15" cols="75" placeholder="輸入內容..."  minlength="1" maxlength="1024"></textarea>
+                                </P>
+                                <P>
+                                    <button>回覆</button>
+                                </P>
+                            </form>
+                        </div>
+                        <div class="TopBanner">                           
+                            <a class="LinkButton" href="/">主畫面</a>
+                            <a class="LinkButton" href="/introduce">遊戲介紹</a>
+                            <a class="LinkButton" href="/rank">排行榜</a>
+                            <a class="LinkButton" href="/forum">討論區</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+<script>
+    var xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://information-security-dungeon.vercel.app/checklogin", true);
+                xhr.withCredentials = true;  // 允许发送凭据
+                xhr.send(null);
+                xhr.onload = function(){
+                    if(xhr.status == 200) {
+                        retuenList = JSON.parse(xhr.responseText);
+                        if (retuenList['islogin']==0){
+                            newaNode = document.createElement('a');
+                            newaNode.className = "LinkButton";
+                            newaNode.href = '/login';
+                            newaNode.appendChild(document.createTextNode("登入/註冊"));
+                            document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                        }
+                        else{
+                            newaNode = document.createElement('a');
+                            newaNode.className = "LinkButton";
+                            newaNode.href = '/User';
+                            newaNode.appendChild(document.createTextNode(retuenList['username']));
+                            document.getElementsByClassName('TopBanner')[0].appendChild(newaNode);
+                        }                                                                                          
+                    }
+                }
+</script>
+</html>
+

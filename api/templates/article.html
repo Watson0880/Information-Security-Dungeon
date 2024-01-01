@@ -272,25 +272,31 @@
                     <div class="Header">                        
                         <div class="App-header"></div>
                         <div class="App-header2">
+                            <form>
+                                <input type="hidden" name="_id" value="{{data['_id']}}">
+                            </form>
                             <h2>{{ data['art-title'] }}</h2>
                             <div style="display: flex;">
-                                <a class="LinkButton2" href="/newarticle">發文</a>
+                                <a class="LinkButton2" href="/reply/{{data['_id']}}">回覆</a>
                             </div>
                             <div>
                                 <table style="margin: auto">
                                     <thead>
-                                        <tr style="background: #d4d4d4;">
-                                            <td class="showusername">
-                                                <p>作者</p>
+                                        <tr >
+                                            <td class="showusername" >
+                                                <p>發布者</p>
                                             </td>                             
-                                            <td class="showtitle">
+                                            <td class="showtitle" >
                                                 <p>內容</p>
+                                            </td>
+                                            <td class="showusername">
+                                                
                                             </td>                                                                                     
                                         </tr>                                     
                                     </thead>                                
                                     <tbody> 
                                         {% for i in range(data['art-txt'] | length) %}
-                                            <tr style="background: #d4d4d4;">
+                                            <tr >
                                                 <td class="showusername">
                                                     <p>{{data['art-auth'][i]}}</p>
                                                 </td>                             
@@ -299,6 +305,13 @@
                                                         <p class="article">{{data['art-txt'][i]}}</p>
                                                     </a>                                                                                                                  
                                                 </td>
+                                                {% if data['art-auth'][i]==data['username'] %}
+                                                <td class="showusername">
+                                                    <form action = "{{ request.path }}" method = "delete">
+                                                        <button name="deletebutton" value="{{i}}">刪除</button>
+                                                    </form>
+                                                </td>
+                                                {% endif %}
                                             </tr>                                          
                                         {% endfor %}
                                         <!--  
