@@ -272,7 +272,7 @@
                     <div class="Header">                        
                         <div class="App-header"></div>
                         <div class="App-header2">
-                            <h2>討論區</h2>
+                            <h2>{{ data['art-title'] }}</h2>
                             <div style="display: flex;">
                                 <a class="LinkButton2" href="/newarticle">發文</a>
                             </div>
@@ -284,15 +284,21 @@
                                                 <p>作者</p>
                                             </td>                             
                                             <td class="showtitle">
-                                                <p>{{ data['art-title'] }}</p>
-                                            </td>
-                                            <td class="showusername">
-                                                <p>更新時間</p>
-                                            </td>                                           
+                                                <p>內容</p>
+                                            </td>                                                                                     
                                         </tr>                                     
                                     </thead>                                
                                     <tbody> 
-                                        
+                                        {% for i in range(len(data['art-txt'])) %}
+                                            <td class="showusername">
+                                                <p>{{data['art-auth'][i]}}</p>
+                                            </td>                             
+                                            <td class="showarticle">                                           
+                                                <a class="articlelink" href="">
+                                                    <p class="article">{{data['art-txt'][i]}}</p>
+                                                </a>                                                                                                                  
+                                            </td>
+                                        {% endfor %}
                                         <!--  
                                         <tr style="background: #d4d4d4;">
                                             <td class="showusername">
