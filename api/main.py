@@ -144,7 +144,7 @@ def findarticle(_id):
         datas = collection.find_one({"_id": ObjectId(_id)},{'art-txt':1})
         datas['art-txt'][request.values.get('deletebutton')] = "該回覆已被刪除"
         datas['lastuploadtime'] = t2
-        collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
+        collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas['art-txt']})
         collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
         return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
     uri = os.environ.get('URL')
@@ -179,7 +179,7 @@ def reply(_id):
             datas['art-auth'].append(session.get('username'))
             datas['art-txt'].append(request.form['context'])
             datas['lastuploadtime'] = t2
-            collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
+            collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas['art-txt']})
             collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
             return render_template('/article.html',data={"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime'],'username':session.get('username')})
     return render_template('/reply.html',data={"_id":_id})
