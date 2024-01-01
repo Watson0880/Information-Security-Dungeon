@@ -177,7 +177,7 @@ def reply(_id):
             t1 = time.localtime(t)
             t2 = time.strftime('%Y/%m/%d %H:%M:%S',t1)
             datas['art-auth'].append(session.get('username'))
-            datas['art-txt'].append('art-txt':request.form['context'])
+            datas['art-txt'].append(request.form['context'])
             datas['lastuploadtime'] = t2
             collection.update_one({"_id": ObjectId(_id)},{'art-txt':datas})
             collection.update_one({"_id": ObjectId(_id)},{'lastuploadtime':t2})
