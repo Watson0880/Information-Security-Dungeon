@@ -307,7 +307,7 @@
                                                 </td>
                                                 {% if data['art-auth'][i]==data['username'] %}
                                                 <td class="showusername">
-                                                    <form action = "{{ request.path }}" method = "delete">
+                                                    <form action = "{{ request.path }}" method = "POST">
                                                         <button name="deletebutton" value="{{i}}">刪除</button>
                                                     </form>
                                                 </td>

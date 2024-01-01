@@ -129,9 +129,9 @@ def Newarticle():
             return redirect(url_for('getforum'))
     return render_template('/newarticle.html')
 
-@app.route('/findarticle/<_id>', methods = ["GET","DELETE"])
+@app.route('/findarticle/<_id>', methods = ["GET","POST"])
 def findarticle(_id):
-    if request.method == 'DELETE':
+    if request.method == 'POST':
         uri = os.environ.get('URL')
         db_name = "rank"
         collection_name = "Article"
