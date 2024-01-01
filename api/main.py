@@ -128,6 +128,19 @@ def Newarticle():
             return redirect(url_for('getforum'))
     return render_template('/newarticle.html')
 
+@app.route('/findarticle/<_id>', methods = ["GET"])
+def findarticle(_id):
+    uri = os.environ.get('URL')
+    db_name = "rank"
+    collection_name = "Article"
+    client = MongoClient(uri)
+    database = client[db_name]
+    collection = database[collection_name]
+    datas = collection.find_one({"_id":_id})
+    data = {"_id":str(datas['_id']),'art-auth':data['art-auth'],"art-title":data['art-title'],"art-txt":data['art-txt'],'lastuploadtime':data['lastuploadtime']}
+    data = json.dumps(data) 
+    return render_template('/article.html',data=data)
+
 @app.route('/uploadrecord',methods=["POST"])
 def uploadrecord():
     data = request.get_data()
