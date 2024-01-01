@@ -138,6 +138,7 @@ def findarticle(_id):
     collection = database[collection_name]
     datas = collection.find_one({"_id":_id})
     print(_id)
+    print(datas)
     data = {"_id":str(datas['_id']),'art-auth':datas['art-auth'],"art-title":datas['art-title'],"art-txt":datas['art-txt'],'lastuploadtime':datas['lastuploadtime']}
     data = json.dumps(data) 
     return render_template('/article.html',data=data)
