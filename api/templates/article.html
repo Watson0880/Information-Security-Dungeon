@@ -284,15 +284,17 @@
                                                 <p>作者</p>
                                             </td>                             
                                             <td class="showtitle">
-                                                <p>{{data['art-title']}}</p>
+                                                {% for i in data %}
+                                                <p>{{i.title}}</p>
+                                                {% endfor %}
                                             </td>
                                             <td class="showusername">
                                                 <p>更新時間</p>
                                             </td>
                                         </tr>
                                     </thead>
-                                    <p>{{data['art-title']}}</p>
-                                    <p>{{data['lastuploadtime']}}</p>
+                                    <p>{{data[0]['art-title']}}</p>
+                                    <p>{{data[0]['lastuploadtime']}}</p>
                                     <p>{{data['art-txt']}}</p>
                                     <p>{{data['art-auth']}}</p>
                                     
